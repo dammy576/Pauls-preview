@@ -445,6 +445,7 @@ p { margin: 0 0 1em; }
   padding: 0;
 }
 .menu-list li { margin-bottom: 1rem; }
+.menu-footnote { margin: 1.5rem 0 0; font-size: 0.93rem; }
 .menu-list p {
   margin: 0.1rem 0 0;
   font-size: 0.93rem;
@@ -506,6 +507,46 @@ p { margin: 0 0 1em; }
 }
 .happy-hour li { margin-bottom: 0.3rem; }
 .happy-hour li::marker { color: var(--amber-400); }
+
+.happy-headline {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--amber-400);
+  margin: -0.25rem 0 0.5rem;
+}
+
+/* Pull tabs: little perforated tickets for the pull-tab happy hour. */
+.pull-tabs {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+.pull-tab {
+  position: relative;
+  text-align: center;
+  padding: 0.85rem 0.5rem 0.75rem;
+  background: var(--wood-900);
+  border: 2px dashed rgba(var(--primary-rgb), 0.6);
+  border-radius: 10px;
+  transform: rotate(-2deg);
+  transition: transform 0.2s ease;
+}
+.pull-tab:nth-child(2) { transform: rotate(1.5deg); border-color: rgba(var(--accent-rgb), 0.75); }
+.pull-tab:nth-child(3) { transform: rotate(-0.5deg); }
+.pull-tab:hover { transform: rotate(0) translateY(-3px); }
+.pull-tab strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: var(--amber-300);
+}
+.pull-tab:nth-child(2) strong { color: var(--accent-light); }
+.pull-tab span { display: block; font-size: 0.82rem; color: var(--cream-muted); margin-top: 0.25rem; }
 
 /* Reservations ------------------------------------------------------------ */
 .reserve-form {

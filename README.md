@@ -18,13 +18,13 @@ step-by-step checklist.
 | `worker/chat-worker.js` | Cloudflare Worker that proxies chat messages to the Anthropic API (system prompt built from `business.json`) |
 | `wrangler.toml` | Worker config (name `jims-pub-chat`, rate-limit binding — no secrets) |
 
-## Reservation form
+## Party / watch party form
 
 The form posts to Formspree (`https://formspree.io/f/mgaowbkn`) with `fetch`, so guests stay on the page,
-and Formspree emails each request to the pub. It sends `name`, `phone_or_email`, `party_size`, `date`, and `time`
-with the subject "New table request – Jim's", plus `_replyto` when the contact is an email address.
-A hidden `_gotcha` honeypot field filters out spam bots. Parties larger than `reservations.maxPartySize`
-(7 for Jim's, so 8+) are asked to call instead. The endpoint and party size are set in `business.json` → `reservations`.
+and Formspree emails each request. It sends `name`, `phone_or_email`, `group_size`, `date`, and `occasion`
+with the subject "New party request – Paul's", plus `_replyto` when the contact is an email address.
+A hidden `_gotcha` honeypot field filters out spam bots. The endpoint and the group-size / occasion choices
+are set in `business.json` → `reservations` (`groupSizes`, `occasions`).
 
 ## Chat widget setup
 

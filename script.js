@@ -13,7 +13,7 @@
  * (Phone number and greeting are filled in from business.json.)
  */
 const CHAT_CONFIG = {
-  apiEndpoint: "https://jims-pub-chat.muchimedia.workers.dev",
+  apiEndpoint: "REPLACE_WITH_WORKER_URL",
   maxMessageLength: 500, // must match MAX_USER_MESSAGE_CHARS in the Worker
   maxHistory: 10, // the Worker also only forwards the last 10 messages
   phoneDisplay: "",
@@ -73,7 +73,6 @@ function renderBusiness(b) {
   const reservations = b.reservations || {};
   const phone = contact.phone || "";
   const phoneHref = phoneToHref(phone);
-  const maxParty = Number(reservations.maxPartySize) || 7;
   const cityLine = [contact.city, contact.region].filter(Boolean).join(", ");
 
   // Shared config used by the form and chat
@@ -87,8 +86,8 @@ function renderBusiness(b) {
   const team = /['’]s$/i.test(name) ? `${name} team` : `The ${name} team`;
   Object.assign(RESERVATION_CONFIG, {
     endpoint: reservations.formspreeEndpoint || "",
-    subject: `New table request – ${name}`,
-    successMessage: `Thanks! Your request is in. ${team} will contact you to confirm your table.`,
+    subject: `New party request – ${name}`,
+    successMessage: `Thanks! Your request is in. ${team} will be in touch to plan it with you.`,
     failureMessage: `Something went wrong — please call us at ${phone}.`,
   });
 
@@ -131,25 +130,29 @@ function renderBusiness(b) {
   if (happy && (happy.when || (happy.deals && happy.deals.length))) {
     const deals = document.getElementById("happy-hour-deals");
     for (const d of happy.deals || []) deals.append(el("li", {}, d));
+    deals.hidden = !deals.children.length;
+    const tabs = document.getElementById("happy-hour-tabs");
+    for (const t of happy.tabs || []) {
+      tabs.append(
+        el("li", { class: "pull-tab" }, [el("strong", {}, t.label || ""), el("span", {}, t.text || "")])
+      );
+    }
+    tabs.hidden = !tabs.children.length;
   } else {
     document.getElementById("happy-hour").hidden = true;
   }
 
-  // Reservations
+  // Party / watch party requests
   const form = document.getElementById("reserve-form");
   form.action = RESERVATION_CONFIG.endpoint;
-  setText(
-    "reserve-intro",
-    `${reservations.intro ? reservations.intro + " " : ""}For parties of ${maxParty + 1} or more, please call us.`
-  );
+  setText("reserve-intro", reservations.intro || "");
   form.elements.phone_or_email.placeholder = reservations.contactPlaceholder || "";
-  const party = form.elements.party_size;
-  for (let n = 1; n <= maxParty; n++) {
-    party.append(el("option", { value: String(n) }, n === 1 ? "1 person" : `${n} people`));
+  for (const size of reservations.groupSizes || []) {
+    form.elements.group_size.append(el("option", { value: size }, size));
   }
-  document
-    .getElementById("res-party-hint")
-    .replaceChildren(`${maxParty + 1} or more? Please call `, el("a", { href: phoneHref }, phone), ".");
+  for (const occasion of reservations.occasions || []) {
+    form.elements.occasion.append(el("option", { value: occasion }, occasion));
+  }
 
   // Location / contact
   document
@@ -418,14 +421,14 @@ function initYear() {
   if (el) el.textContent = String(new Date().getFullYear());
 }
 
-/* Reservations ----------------------------------------------------------- */
+/* Party requests ---------------------------------------------------------- */
 // Field name -> label used in validation messages.
 const RESERVATION_FIELDS = [
   { name: "name", label: "Name" },
   { name: "phone_or_email", label: "Phone or email" },
-  { name: "party_size", label: "Party size" },
+  { name: "group_size", label: "Group size" },
   { name: "date", label: "Date" },
-  { name: "time", label: "Time" },
+  { name: "occasion", label: "Occasion" },
 ];
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -507,14 +510,13 @@ function validateReservation(v) {
   if (!v.phone_or_email) missing("phone_or_email");
   else if (!isPhoneOrEmail(v.phone_or_email)) problems.push({ name: "phone_or_email", kind: "invalid" });
 
-  if (!v.party_size) missing("party_size");
+  if (!v.group_size) missing("group_size");
 
   if (!v.date) missing("date");
   else if (!/^\d{4}-\d{2}-\d{2}$/.test(v.date)) problems.push({ name: "date", kind: "invalid" });
   else if (v.date < todayISO()) problems.push({ name: "date", kind: "past" });
 
-  if (!v.time) missing("time");
-  else if (!/^\d{2}:\d{2}/.test(v.time)) problems.push({ name: "time", kind: "invalid" });
+  if (!v.occasion) missing("occasion");
 
   return problems;
 }
@@ -541,9 +543,9 @@ async function sendReservation(v, honeypot) {
   const payload = {
     name: v.name,
     phone_or_email: v.phone_or_email,
-    party_size: v.party_size,
+    group_size: v.group_size,
     date: formatDate(v.date),
-    time: formatTime(v.time),
+    occasion: v.occasion,
     _subject: RESERVATION_CONFIG.subject,
     _gotcha: honeypot,
   };
@@ -608,14 +610,6 @@ function formatDate(iso) {
   const dt = new Date(y, m - 1, d);
   if (Number.isNaN(dt.getTime())) return iso;
   return dt.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
-}
-
-// "19:30" -> "7:30 PM" (falls back to the raw value)
-function formatTime(hhmm) {
-  const [h, min] = hhmm.split(":").map(Number);
-  if (Number.isNaN(h) || Number.isNaN(min)) return hhmm;
-  const dt = new Date(2000, 0, 1, h, min);
-  return dt.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
 }
 
 /* Chat widget ------------------------------------------------------------ */
