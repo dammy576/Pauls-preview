@@ -1,133 +1,159 @@
 {
   "demo": true,
-  "demoNote": "Demo concept — Jim's is a fictional pub. Address, phone, and menu are for illustration only.",
+  "demoNote": "Preview prepared for Paul's — not the official site.",
 
-  "name": "Jim's",
-  "type": "neighborhood pub",
-  "knownFor": "wood-fired pizza",
-  "tagline": "Cold beer, a hot oven, and a seat waiting for you.",
-  "heroEyebrow": "Brooklyn, NY · Since forever, give or take",
-  "heroIntro": "Your neighborhood pub for wood-fired pizza, good pours, and better company.",
+  "name": "Paul's",
+  "type": "neighborhood bar",
+  "knownFor": "pull-tab happy hour, sports screenings with sound, and 10-inch pizzas",
+  "tagline": "Your neighborhood bar in Bed-Stuy. Everyone's welcome.",
+  "heroEyebrow": "Bed-Stuy, Brooklyn · Est. 2019",
+  "heroIntro": "Cold cans, good cocktails, 10\" pizzas, and the game on with sound — come in a first-timer, leave with friends.",
 
   "seo": {
-    "title": "Jim's | Neighborhood Pub & Wood-Fired Pizza in Brooklyn",
-    "description": "Jim's is a neighborhood pub in Brooklyn, NY serving wood-fired pizza, cold beer, and good cocktails. Happy hour Mon–Fri 4–6pm."
+    "title": "Paul's | Neighborhood Bar in Bed-Stuy, Brooklyn",
+    "description": "Paul's is a friendly neighborhood bar on Nostrand Ave in Bed-Stuy, Brooklyn. Pull-tab happy hour Mon–Fri 3–8 PM, sports with sound, canned beer, cocktails, and 10-inch pizzas."
   },
 
   "theme": {
-    "background": "#1e130c",
-    "primary": "#e0a33a",
-    "accent": "#d9622b"
+    "background": "#1b1320",
+    "primary": "#7fd1b9",
+    "accent": "#ff6f61"
   },
 
   "about": {
-    "heading": "Pull up a stool. Stay a while.",
+    "heading": "Regulars and first-timers, same bar.",
     "paragraphs": [
-      "Jim's is the kind of place where the bartender remembers your order and the regulars save you a seat. Worn wood, warm light, a good jukebox, and no pretense — just a neighborhood pub doing simple things well.",
-      "The heart of the room is our wood-fired oven. Every pie gets a blistered, chewy crust and a kiss of smoke in about ninety seconds flat. Pair it with a cold pint and you've got the best night of your week."
+      "Paul's is a friendly local bar on Nostrand Ave where everyone's welcome. Come in on your own, and chances are you'll leave knowing a few more neighbors — that's kind of the point.",
+      "We screen sports with the sound on, host guest bartenders, charity nights, and games, and keep it simple behind the bar: canned beer only, good cocktails, wine, and non-alcoholic options. There are regular kitchen pop-ups, and you're always welcome to bring your own food."
     ],
     "highlights": [
-      { "icon": "♨", "title": "Wood-fired, always", "text": "Oak-burning oven running at 850°F." },
-      { "icon": "★", "title": "Local pours", "text": "Brooklyn beers on draft, rotating seasonals." },
-      { "icon": "♥", "title": "Everyone's welcome", "text": "Families early, night owls late." }
+      { "icon": "▶", "title": "Sports with sound", "text": "The game's on and you can actually hear it." },
+      { "icon": "★", "title": "Something every week", "text": "Guest bartenders, charity nights, games, and kitchen pop-ups." },
+      { "icon": "♥", "title": "Everyone's welcome", "text": "Bring friends, bring your own food, or just bring yourself." }
     ]
   },
 
   "contact": {
-    "heading": "Right around the corner",
-    "street": "214 Hearth Street",
+    "heading": "Find us on Nostrand",
+    "street": "283 Nostrand Ave",
     "city": "Brooklyn",
     "region": "NY",
-    "postalCode": "11215",
-    "phone": "(718) 555-0142",
-    "email": "hello@jims-pub.example",
-    "directions": "Two blocks from the 7th Ave stop. Street parking is a Brooklyn adventure."
+    "postalCode": "11216",
+    "phone": "(347) 435-3755",
+    "email": "",
+    "directions": "On Nostrand Ave in Bed-Stuy, Brooklyn."
   },
 
   "social": [
-    { "label": "Instagram", "url": "" },
-    { "label": "Facebook", "url": "" }
+    { "label": "Instagram @paulsbarbk", "url": "https://www.instagram.com/paulsbarbk/" }
   ],
 
   "hours": {
     "heading": "Come on in",
     "schedule": [
-      { "days": "Monday – Thursday", "time": "4pm – 12am" },
-      { "days": "Friday", "time": "4pm – 2am" },
-      { "days": "Saturday", "time": "12pm – 2am" },
-      { "days": "Sunday", "time": "12pm – 11pm" }
+      { "days": "Monday – Friday", "time": "3 PM – 2 AM" },
+      { "days": "Saturday – Sunday", "time": "12 PM – 2 AM" }
     ],
-    "note": "Kitchen closes one hour before the bar."
+    "note": "Paying cash? You get 4% off — menu prices are card prices."
   },
 
   "happyHour": {
-    "when": "Mon – Fri · 4–6pm",
-    "deals": [
-      "$2 off all draft beer",
-      "$10 house cocktails",
-      "$12 Margherita pizzas"
+    "when": "Mon – Fri · 3–8 PM",
+    "headline": "Pull-tab happy hour",
+    "intro": "Order an eligible drink, pull a tab, and see what you get:",
+    "tabs": [
+      { "label": "½ price", "text": "Half off your drink" },
+      { "label": "$1", "text": "Your drink for a buck" },
+      { "label": "Full price", "text": "Better luck next round" }
     ],
-    "note": "At the bar and high-tops. Can't be combined with other offers."
+    "deals": [],
+    "note": "On eligible drinks only. Ask the bartender which drinks are in play."
   },
 
   "menu": {
     "heading": "Eat, drink, repeat",
     "featured": {
-      "title": "Wood-Fired Pizza",
-      "note": "12-inch pies, hand-stretched daily and fired in our oak-burning oven.",
+      "title": "10\" Pizza",
+      "note": "Ten-inch pies — plus regular kitchen pop-ups, and you're welcome to bring your own food.",
       "items": [
-        { "name": "Margherita", "description": "San Marzano tomato, fresh mozzarella, basil, and good olive oil — the classic.", "price": "$16" },
-        { "name": "Pepperoni", "description": "Cup-and-char pepperoni over tomato and mozzarella, finished with oregano.", "price": "$18" },
-        { "name": "Jim's Special", "description": "Spicy soppressata, whipped ricotta, roasted garlic, and a drizzle of hot honey.", "price": "$21", "badge": "House favorite" }
+        { "name": "Plain", "description": "", "price": "$9.36" },
+        { "name": "Pepperoni", "description": "", "price": "$11.44" },
+        { "name": "Bruschetta", "description": "Veggie.", "price": "$11.44" },
+        { "name": "Bacon + Spinach", "description": "White pie.", "price": "$13.52" },
+        { "name": "Cauliflower Crust", "description": "Vegan.", "price": "$13.52", "badge": "Vegan" }
       ]
     },
     "food": [
       {
-        "title": "Food",
+        "title": "Cocktails",
         "items": [
-          { "name": "Garlic Knots", "description": "Straight from the oven, with marinara for dunking.", "price": "$8" },
-          { "name": "Wood-Fired Wings", "description": "Charred, then tossed in Calabrian chili butter.", "price": "$14" },
-          { "name": "Meatball Sliders", "description": "Three sliders, Sunday sauce, melted provolone.", "price": "$13" },
-          { "name": "Caesar Salad", "description": "Little gem, parm, garlic breadcrumbs.", "price": "$12" }
+          { "name": "Charmander", "description": "Tito's vodka, ginger, honey, lemon.", "price": "$15.60" },
+          { "name": "Sift Sour", "description": "Papalote mezcal, agave, red wine, fresh lime & lemon.", "price": "$15.60" },
+          { "name": "Becca Truth", "description": "Sapphire gin, elderflower liqueur, lemon, topped with Sauvignon Blanc.", "price": "$15.60" },
+          { "name": "Johnny Five", "description": "Spiced rum, amaro, Antica.", "price": "$15.60" },
+          { "name": "Negroni Sbagliato", "description": "Campari, Antica, sparkling orange.", "price": "$15.60" },
+          { "name": "Savannah Kiss", "description": "Uncle Nearest bourbon, peach schnapps, grapefruit, cranberry.", "price": "$15.60" },
+          { "name": "Simon Alexander", "description": "Tito's or Irish whiskey, cold brew, Frangelico, amaretto, Irish cream, Kahlúa, coffee beans.", "price": "$15.60" },
+          { "name": "Red Sangria", "description": "", "price": "$12.48" }
+        ]
+      },
+      {
+        "title": "Wine · glass / bottle",
+        "items": [
+          { "name": "Tempranillo", "description": "Rosario Vera, organic.", "price": "$12.48 / $43.68" },
+          { "name": "Côtes du Rhône", "description": "Charles De Fère, organic.", "price": "$12.48 / $43.68" },
+          { "name": "Sauvignon Blanc", "description": "Fournier.", "price": "$12.48 / $43.68" },
+          { "name": "Vinho Verde", "description": "Bernier.", "price": "$10.40 / $39.52" },
+          { "name": "Rosé", "description": "Domaine Bousquet, organic.", "price": "$11.44 / $39.52" },
+          { "name": "Blanc de Blancs", "description": "Jean-Louisa.", "price": "$10.40" },
+          { "name": "Orange", "description": "Biokult Naken, organic & natural.", "price": "$15.60 / $62.40" }
         ]
       }
     ],
     "drinks": [
       {
-        "title": "Beer",
+        "title": "Beer · 12 oz cans",
         "items": [
-          { "name": "Brooklyn Lager", "description": "", "price": "$8" },
-          { "name": "Jim's House IPA", "description": "", "price": "$8" },
-          { "name": "Guinness", "description": "", "price": "$9" },
-          { "name": "Seasonal Cider", "description": "", "price": "$8" }
+          { "name": "Miller High Life", "description": "", "price": "$4.16" },
+          { "name": "Modelo", "description": "", "price": "$6.24" },
+          { "name": "Brooklyn Crisp Pilsner", "description": "", "price": "$6.24" },
+          { "name": "Radiant Pig Lo-Fi Lager", "description": "", "price": "$6.24" },
+          { "name": "Dogfish 60 Min IPA", "description": "", "price": "$7.28" },
+          { "name": "Dogfish SeaQuench Sour", "description": "", "price": "$7.28" },
+          { "name": "Downeast Cider", "description": "", "price": "$7.28" },
+          { "name": "Montauk Watermelon", "description": "", "price": "$7.28" }
         ]
       },
       {
-        "title": "Cocktails",
+        "title": "Non-alcoholic",
         "items": [
-          { "name": "Old Fashioned", "description": "Rye, demerara, Angostura, orange peel.", "price": "$14" },
-          { "name": "Negroni", "description": "Gin, Campari, sweet vermouth.", "price": "$13" },
-          { "name": "Jim's Mule", "description": "Vodka, house ginger beer, lime.", "price": "$12" }
+          { "name": "Good Time IPA", "description": "", "price": "$7.28" },
+          { "name": "Athletic", "description": "", "price": "$7.28" }
         ]
       }
-    ]
+    ],
+    "footnote": "Prices shown are card prices. Pay cash and get 4% off."
   },
 
   "reservations": {
-    "heading": "Save me a seat",
-    "intro": "Walk-ins are always welcome, but if you'd like a table locked in, let us know below.",
+    "heading": "Plan a party or watch party",
+    "intro": "Birthday, game night, or just a big group of friends? Tell us a little about it and we'll get back to you.",
     "formspreeEndpoint": "https://formspree.io/f/mgaowbkn",
-    "maxPartySize": 7,
-    "bookButtonLabel": "Book a table",
-    "submitButtonLabel": "Request a table",
-    "contactPlaceholder": "(718) 555-0123 or you@example.com"
+    "groupSizes": ["Under 10", "10–20", "20–40", "40+"],
+    "occasions": ["Birthday", "Game night", "Other"],
+    "bookButtonLabel": "Plan a party",
+    "submitButtonLabel": "Send party request",
+    "contactPlaceholder": "(347) 555-0123 or you@example.com"
   },
 
   "chat": {
-    "voice": "like a friendly bartender",
-    "greeting": "Hey there, welcome to Jim's! Ask me about the menu, prices, hours, happy hour, or how to grab a table.",
+    "voice": "like a friendly neighborhood bartender",
+    "greeting": "Hey, welcome to Paul's! Ask me about the menu, prices, hours, pull-tab happy hour, or planning a party.",
     "extraFacts": [
-      "Walk-ins are always welcome."
+      "Walk-ins are always welcome.",
+      "Canned beer only — no draft.",
+      "Guests are welcome to bring their own food; there are also regular kitchen pop-ups.",
+      "Cash payers get 4% off; menu prices are card prices."
     ]
   }
 }
