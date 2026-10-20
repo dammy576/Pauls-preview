@@ -9,8 +9,9 @@
  * apiEndpoint: the URL of the deployed Cloudflare Worker (worker/chat-worker.js),
  * e.g. "https://jims-pub-chat.<your-subdomain>.workers.dev".
  * While it is left as the placeholder "REPLACE_WITH_WORKER_URL", the widget shows a
- * friendly "please call us" fallback instead of making any network request.
- * (Phone number and greeting are filled in from business.json.)
+ * friendly "please call us" fallback instead of making any network request — or, when
+ * business.json -> chat.previewMode.enabled is true, the preview greeting and reply.
+ * (Phone number, greeting and preview text are filled in from business.json.)
  */
 const CHAT_CONFIG = {
   apiEndpoint: "REPLACE_WITH_WORKER_URL",
@@ -20,6 +21,7 @@ const CHAT_CONFIG = {
   phoneHref: "",
   greeting: "",
   businessName: "",
+  previewMode: null, // { greeting, reply } from business.json -> chat.previewMode, when enabled
 };
 
 const PLACEHOLDER_ENDPOINT = "REPLACE_WITH_WORKER_URL";
@@ -81,6 +83,7 @@ function renderBusiness(b) {
     phoneHref,
     greeting: (b.chat && b.chat.greeting) || `Hey there, welcome to ${name}!`,
     businessName: name,
+    previewMode: b.chat && b.chat.previewMode && b.chat.previewMode.enabled === true ? b.chat.previewMode : null,
   });
   // "Jim's" -> "Jim's team"; "Blue Door Cafe" -> "The Blue Door Cafe team"
   const team = /['’]s$/i.test(name) ? `${name} team` : `The ${name} team`;
@@ -636,7 +639,9 @@ function initChat() {
     windowEl.hidden = false;
     toggle.setAttribute("aria-expanded", "true");
     if (!greeted) {
-      addMessage("bot", CHAT_CONFIG.greeting);
+      const preview = activePreviewMode();
+      if (preview && preview.greeting) addLinkedMessage(preview.greeting);
+      else addMessage("bot", CHAT_CONFIG.greeting);
       greeted = true;
     }
     input.focus();
@@ -692,7 +697,9 @@ function initChat() {
 
     if (!isEndpointConfigured()) {
       history.pop(); // nothing was actually exchanged with the bot
-      addFallback();
+      const preview = activePreviewMode();
+      if (preview && preview.reply) addLinkedMessage(preview.reply);
+      else addFallback();
       return;
     }
 
@@ -725,6 +732,16 @@ function initChat() {
     return li;
   }
 
+  // Bot message with links: URLs open in a new tab, the business phone number becomes tap-to-call.
+  function addLinkedMessage(text) {
+    const li = document.createElement("li");
+    li.className = "chat-msg chat-msg-bot";
+    li.append(...linkify(text));
+    list.appendChild(li);
+    list.scrollTop = list.scrollHeight;
+    return li;
+  }
+
   function addFallback(customMessage) {
     const li = document.createElement("li");
     li.className = "chat-msg chat-msg-bot";
@@ -741,6 +758,39 @@ function initChat() {
     list.appendChild(li);
     list.scrollTop = list.scrollHeight;
   }
+}
+
+// Preview mode only applies while the bot is switched off.
+function activePreviewMode() {
+  return !isEndpointConfigured() && CHAT_CONFIG.previewMode;
+}
+
+// Splits text into text nodes and links (URLs and the business phone number).
+function linkify(text) {
+  const phone = CHAT_CONFIG.phoneDisplay;
+  const escaped = phone ? phone.replace(/[.*+?^${}()|[\]\\]/g, "\\$&") : "";
+  const pattern = new RegExp(`https?:\\/\\/[^\\s]+${escaped ? `|${escaped}` : ""}`, "g");
+  const parts = [];
+  let last = 0;
+  for (const match of text.matchAll(pattern)) {
+    let token = match[0];
+    if (token !== phone) token = token.replace(/[.,!?)]+$/, ""); // keep trailing punctuation as text
+    parts.push(text.slice(last, match.index));
+    const a = document.createElement("a");
+    if (token === phone) {
+      a.href = CHAT_CONFIG.phoneHref;
+      a.className = "nowrap";
+    } else {
+      a.href = token;
+      a.target = "_blank";
+      a.rel = "noopener";
+    }
+    a.textContent = token;
+    parts.push(a);
+    last = match.index + token.length;
+  }
+  parts.push(text.slice(last));
+  return parts.filter((p) => p !== "");
 }
 
 function isEndpointConfigured() {

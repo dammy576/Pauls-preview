@@ -35,6 +35,10 @@ Everything the visitor sees, and everything the chatbot knows, comes from this o
 - [ ] **Demo flag:** `"demo": true` shows the "Demo concept" note in the footer (`demoNote`) — use it for
   pitches. Set it to `false` once the site is real.
 - [ ] **Chat text:** `chat.greeting`, `chat.voice` (e.g. "like a friendly barista"), and any `chat.extraFacts`.
+- [ ] **Chat preview mode (for pitches):** with `chat.previewMode.enabled` set to `true`, the chat bubble shows
+  `previewMode.greeting` when opened and answers every question with `previewMode.reply` (links in it open in a
+  new tab; the business phone number becomes tap-to-call). Write both for the client. It only applies while the
+  bot is switched off (step 5). Set `enabled` to `false` to get the plain "please call us" message instead.
 
 Tip: `business.json` must stay valid JSON — keep the quotes and commas, and paste it into a JSON checker
 (e.g. jsonlint.com) if the page shows "Sorry, this page couldn't load".
