@@ -147,6 +147,11 @@
   },
 
   "chat": {
+    "previewMode": {
+      "enabled": true,
+      "greeting": "Hey! This is a preview of Paul's AI assistant. Once the site goes live, I'll answer customer questions about the menu, prices, hours and pull-tab happy hour, day and night.",
+      "reply": "I'm not switched on yet — this is just a preview. Want to see a live one in action? Try the demo assistant here: https://dammy576.github.io/Jims-pub/ (ask it about happy hour!). For anything about Paul's tonight, call (347) 435-3755."
+    },
     "voice": "like a friendly neighborhood bartender",
     "greeting": "Hey, welcome to Paul's! Ask me about the menu, prices, hours, pull-tab happy hour, or planning a party.",
     "extraFacts": [
